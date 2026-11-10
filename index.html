@@ -34,23 +34,43 @@
     <div id="search">
         <input id="box" placeholder="Type Any Website Name">
         <button onclick="go()"> Go </button>
+        <h2 id="result"></h2>
     </div>
     <script>
         function go()
         {
             var text = document.getElementById("box").value.trim().toLowerCase();
+            var url;
+
             if (text == "")
             {
                 return;
             }
             else if (text.includes("."))
             {
-                window.location.href = "https://" + text;
+                url = "https://" + text;
             }
             else
             {
-                window.location.href = "https://" + text + ".com";
+                url = "https://" + text + ".com";
             }
+
+            fetch(url)
+                .then(function(response)
+                {
+                    document.getElementById("result").innerHTML = response.status + " " + response.statusText;
+                })
+                .catch(function()
+                {
+                    document.getElementById("result").innerHTML = "Code not available";
+                })
+                .finally(function()
+                {
+                    setTimeout(function()
+                    {
+                        window.location.href = url;
+                    }, 3000);
+                });
         }
     </script>
 </body>
