@@ -22,7 +22,7 @@
             padding: 8px 16px;
             font-size: 16px;
         }
-        search {
+        #search {
             margin-top: 50px;
         }
     </style>
@@ -34,24 +34,43 @@
     <div id="search">
         <input id="box" placeholder="Type Any Website Name">
         <button onclick="go()"> Go </button>
+        <p id="result"></p>
     </div>
     <script>
         function go()
         {
             var text = document.getElementById("box").value.trim().toLowerCase();
-            if (text == "") 
+            var url;
+
+            if (text == "")
             {
-            return;
+                return;
             }
-            else if (text.includes(".")) 
+            else if (text.includes("."))
             {
-            window.open("https://" + text);
+                url = "https://" + text;
             }
             else
             {
-            window.open("https://" + text + ".com");
+                url = "https://" + text + ".com";
             }
+
+            // open the site
+            window.open(url);
+
+            // show the status code
+            fetch(url)
+                .then(function(response)
+                {
+                    document.getElementById("result").innerHTML =
+                        url + " → " + response.status + " " + response.statusText;
+                })
+                .catch(function()
+                {
+                    document.getElementById("result").innerHTML =
+                        "Status code could not be read (blocked or site not found)";
+                });
         }
-</script>
+    </script>
 </body>
 </html>
