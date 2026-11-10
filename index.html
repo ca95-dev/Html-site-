@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Search</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 150px;
+        }
+        h1 {
+            font-size: 50px;
+            color: darkblue;
+        }
+        input {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Search</h1>
+
+    <input type="text" id="box" placeholder="Type a website or anything...">
+    <button onclick="go()">Go</button>
+
+    <script>
+        function go() {
+            var text = document.getElementById("box").value.trim();
+
+            if (text == "") {
+                return;
+            }
+
+            // If it has a dot and no spaces, treat it as a website
+            if (text.includes(".") && !text.includes(" ")) {
+                if (!text.startsWith("http")) {
+                    text = "https://" + text;
+                }
+                window.location.href = text;
+            }
+            // Otherwise, search it
+            else {
+                window.location.href = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
+            }
+        }
+
+        // Press Enter to search
+        document.getElementById("box").addEventListener("keypress", function(e) {
+            if (e.key == "Enter") {
+                go();
+            }
+        });
+    </script>
+
+</body>
+</html>
