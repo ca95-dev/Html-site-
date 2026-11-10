@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Browser</title>
+    <title>Web Page</title>
     <style>
         body {
             margin: 0;
@@ -11,7 +11,7 @@
         header {
             background: darkblue;
             color: white;
-            padding: 20px;
+            padding: 10px;
         }
         input {
             width: 300px;
@@ -30,15 +30,15 @@
 </head>
 <body>
     <header>
-        <h1>My Browser</h1>
-        <p>Type a website name and press Go</p>
+        <h1>Web Page</h1>
     </header>
     <div id="search">
-        <input id="box" placeholder="Type youtube, instagram...">
-        <button onclick="go()">Go</button>
+        <input id="box" placeholder="Type Any Website Name">
+        <button onclick="go()"> Go </button>
     </div>
     <script>
-        function go() {
+        function go()
+        {
             var text = document.getElementById("box").value.trim().toLowerCase();
             if (text == "") 
             {
@@ -52,6 +52,7 @@
             {
             window.open("https://" + text + ".com");
             }
+        }
 </script>
 </body>
 </html>
