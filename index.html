@@ -1,61 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>My Browser</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-        }
-        #bar {
-            background: #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        input {
-            width: 60%;
-            padding: 8px;
-            font-size: 16px;
-        }
-        button {
-            padding: 8px 16px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        iframe {
-            width: 100%;
-            height: 90vh;
-            border: none;
-        }
-    </style>
-</head>
 <body>
 
-    <div id="bar">
-        <input type="text" id="box" placeholder="Type a website or anything...">
-        <button onclick="go()">Go</button>
-    </div>
-
-    <iframe id="screen" src="https://en.wikipedia.org"></iframe>
+    <input id="box" placeholder="Type youtube, instagram...">
+    <button onclick="go()">Go</button>
 
     <script>
         function go() {
-            var text = document.getElementById("box").value.trim();
+            var text = document.getElementById("box").value.trim().toLowerCase();
             if (text == "") return;
-            var url;
-            if (text.includes(".") && !text.includes(" ")) {
-                url = text.startsWith("http") ? text : "https://" + text;
+            if (text.includes(".")) {
+                window.open("https://" + text);
             }
             else {
-                url = "https://en.wikipedia.org/w/index.php?search=" + encodeURIComponent(text);
+                window.open("https://" + text + ".com");
             }
-
-            document.getElementById("screen").src = url;
         }
-
-        document.getElementById("box").addEventListener("keypress", function(e) {
-            if (e.key == "Enter") go();
-        });
     </script>
 
 </body>
