@@ -55,21 +55,22 @@
                 url = "https://" + text + ".com";
             }
 
+            document.getElementById("result").innerHTML = "Redirecting...";
+
             fetch(url)
                 .then(function(response)
                 {
-                    document.getElementById("result").innerHTML = response.status + " " + response.statusText;
+                    document.getElementById("result").innerHTML = response.status + " " + response.statusText + " - Redirecting...";
                 })
                 .catch(function()
                 {
-                    document.getElementById("result").innerHTML = "Code not available";
                 })
                 .finally(function()
                 {
                     setTimeout(function()
                     {
                         window.location.href = url;
-                    }, 3000);
+                    }, 2000);
                 });
         }
     </script>
