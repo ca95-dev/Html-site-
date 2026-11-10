@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>My Browser</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            text-align: center;
+        }
+        header {
+            background: darkblue;
+            color: white;
+            padding: 20px;
+        }
+        input {
+            width: 300px;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        search {
+            margin-top: 50px;
+        }
+    </style>
+</head>
 <body>
-
-    <input id="box" placeholder="Type youtube, instagram...">
-    <button onclick="go()">Go</button>
-
+    <header>
+        <h1>My Browser</h1>
+        <p>Type a website name and press Go</p>
+    </header>
+    <div id="search">
+        <input id="box" placeholder="Type youtube, instagram...">
+        <button onclick="go()">Go</button>
+    </div>
     <script>
         function go() {
             var text = document.getElementById("box").value.trim().toLowerCase();
-            if (text == "") return;
-            if (text.includes(".")) {
-                window.open("https://" + text);
+            if (text == "") 
+            {
+            return;
             }
-            else {
-                window.open("https://" + text + ".com");
+            else if (text.includes(".")) 
+            {
+            window.open("https://" + text);
             }
-        }
-    </script>
-
+            else
+            {
+            window.open("https://" + text + ".com");
+            }
+</script>
 </body>
 </html>
