@@ -34,13 +34,11 @@
     <div id="search">
         <input id="box" placeholder="Type Any Website Name">
         <button onclick="go()"> Go </button>
-        <h2 id="result"></h2>
     </div>
     <script>
         function go()
         {
             var text = document.getElementById("box").value.trim().toLowerCase();
-            var url;
 
             if (text == "")
             {
@@ -48,30 +46,12 @@
             }
             else if (text.includes("."))
             {
-                url = "https://" + text;
+                window.location.href = "https://" + text;
             }
             else
             {
-                url = "https://" + text + ".com";
+                window.location.href = "https://" + text + ".com";
             }
-
-            document.getElementById("result").innerHTML = "Redirecting...";
-
-            fetch(url)
-                .then(function(response)
-                {
-                    document.getElementById("result").innerHTML = response.status + " " + response.statusText + " - Redirecting...";
-                })
-                .catch(function()
-                {
-                })
-                .finally(function()
-                {
-                    setTimeout(function()
-                    {
-                        window.location.href = url;
-                    }, 2000);
-                });
         }
     </script>
 </body>
